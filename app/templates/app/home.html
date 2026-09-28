@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<!-- Hero Section Clean -->
+<div class="card card-clean p-5 text-center mb-5 bg-white border-0 shadow-sm">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
+                Plataforma de Empregos Tech
+            </span>
+            <h1 class="fw-bold display-5 text-dark mb-3">Encontre a sua próxima oportunidade em tecnologia</h1>
+            <p class="text-muted lead mb-4">
+                Conectamos os melhores talentos a empresas inovadoras. Explore as oportunidades disponíveis.
+            </p>
+            <a href="{% url 'lista_vagas' %}" class="btn btn-primary-clean btn-lg px-4">
+                Ver Todas as Vagas <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Secção Vagas em Destaque -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold m-0">Vagas em Destaque</h4>
+        <p class="text-muted small m-0">As oportunidades mais recentes da nossa plataforma.</p>
+    </div>
+    <a href="{% url 'lista_vagas' %}" class="btn btn-sm btn-light-clean px-3">Ver todas</a>
+</div>
+
+<div class="row g-4">
+    {% for vaga in vagas_em_alta %}
+        <div class="col-md-4">
+            <div class="card card-clean h-100 p-3">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-light text-dark border fw-normal">{{ vaga.modalidade }}</span>
+                        <span class="fw-bold text-success">€ {{ vaga.salario }}</span>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-1">{{ vaga.titulo_vaga }}</h5>
+                    <p class="text-muted small mb-4"><i class="bi bi-building me-1"></i>{{ vaga.empresa }}</p>
+                    <a href="{% url 'detalhe_vaga' vaga.pk %}" class="btn btn-sm btn-light-clean w-100 mt-auto py-2">
+                        Ver detalhes
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12 text-center py-5 text-muted">
+            <p class="mb-0">Nenhuma vaga cadastrada de momento.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
