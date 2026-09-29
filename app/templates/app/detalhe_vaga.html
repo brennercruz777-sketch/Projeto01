@@ -1,22 +1,44 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-<div class="card shadow">
-    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-        <h2>{{ vaga.titulo_vaga }}</h2>
-        <span class="badge bg-primary">{{ vaga.modalidade }}</span>
-    </div>
-    <div class="card-body">
-        <h4><strong>Empresa:</strong> {{ vaga.empresa }}</h4>
-        <h5 class="text-success my-3"><strong>Salário:</strong> € {{ vaga.salario }}</h5>
-        
-        <hr>
-        <h5>Requisitos e Descrição:</h5>
-        <p style="white-space: pre-line;">{{ vaga.requisitos }}</p>
-        
-        <hr>
-        <button class="btn btn-success btn-lg" onclick="alert('Candidatura enviada com sucesso!')">Candidatar a esta Vaga</button>
-        <a href="{% url 'lista_vagas' %}" class="btn btn-secondary btn-lg ms-2">Voltar</a>
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <a href="{% url 'lista_vagas' %}" class="btn btn-link text-decoration-none mb-3 p-0 text-muted fw-semibold">
+            <i class="bi bi-arrow-left me-1"></i> Voltar para as vagas
+        </a>
+
+        <div class="card card-clean p-4 p-md-5">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-3 mb-4 pb-4 border-bottom border-secondary border-opacity-25">
+                <div>
+                    <span class="badge {% if vaga.modalidade == 'Remoto' %}badge-remoto{% elif vaga.modalidade == 'Híbrido' %}badge-hibrido{% else %}badge-presencial{% endif %} px-3 py-2 rounded-pill fw-semibold mb-3">
+                        {{ vaga.modalidade }}
+                    </span>
+                    <h2 class="fw-bold text-white mb-2">{{ vaga.titulo_vaga }}</h2>
+                    <h5 class="text-muted"><i class="bi bi-building me-2"></i>{{ vaga.empresa }}</h5>
+                </div>
+                <div class="text-md-end">
+                    <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 fs-5 px-3 py-2">
+                        € {{ vaga.salario }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h5 class="fw-bold text-white mb-3"><i class="bi bi-file-earmark-text text-info me-2"></i>Requisitos e Descrição</h5>
+                <div class="bg-dark bg-opacity-50 p-4 rounded-3 text-light lh-lg" style="white-space: pre-line; border: 1px solid #222d45;">
+                    {{ vaga.requisitos }}
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-3 pt-3">
+                <button class="btn btn-success btn-lg fw-bold flex-grow-1 py-3" onclick="alert('Candidatura enviada com sucesso!')">
+                    <i class="bi bi-check-circle me-1"></i> Candidatar-me a esta Vaga
+                </button>
+                <a href="{% url 'lista_vagas' %}" class="btn btn-light-clean btn-lg px-4 fw-semibold">
+                    Voltar
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

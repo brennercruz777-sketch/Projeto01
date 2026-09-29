@@ -3,8 +3,8 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h3 class="fw-bold m-0">Painel de Gestão</h3>
-        <p class="text-muted small m-0">Gira e acompanhe todas as oportunidades ativas.</p>
+        <h3 class="fw-bold m-0 text-white">Painel de Gestão</h3>
+        <p class="text-muted small m-0">Gerencie todas as vagas publicadas na plataforma.</p>
     </div>
     <a href="{% url 'criar_vaga' %}" class="btn btn-primary-clean">
         <i class="bi bi-plus-lg me-1"></i> Nova Vaga
@@ -27,17 +27,19 @@
             <tbody>
                 {% for vaga in vagas %}
                 <tr>
-                    <td class="fw-semibold text-dark">{{ vaga.titulo_vaga }}</td>
+                    <td class="fw-semibold text-white">{{ vaga.titulo_vaga }}</td>
                     <td>{{ vaga.empresa }}</td>
                     <td>
-                        <span class="badge bg-light text-dark border fw-normal">{{ vaga.modalidade }}</span>
+                        <span class="badge {% if vaga.modalidade == 'Remoto' %}badge-remoto{% elif vaga.modalidade == 'Híbrido' %}badge-hibrido{% else %}badge-presencial{% endif %} rounded-pill">
+                            {{ vaga.modalidade }}
+                        </span>
                     </td>
                     <td class="fw-medium text-success">€ {{ vaga.salario }}</td>
                     <td>
                         {% if vaga.ativa %}
-                            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Ativa</span>
+                            <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 rounded-pill">Ativa</span>
                         {% else %}
-                            <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill">Encerrada</span>
+                            <span class="badge bg-secondary bg-opacity-25 text-secondary border border-secondary border-opacity-25 rounded-pill">Encerrada</span>
                         {% endif %}
                     </td>
                     <td class="text-end">

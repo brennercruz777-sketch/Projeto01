@@ -9,4 +9,6 @@ urlpatterns = [
     path('gestao/criar/', views.criar_vaga, name='criar_vaga'),
     path('gestao/editar/<int:pk>/', views.editar_vaga, name='editar_vaga'),
     path('gestao/eliminar/<int:pk>/', views.eliminar_vaga, name='eliminar_vaga'),
+    path('perfil/', views.perfil, name='perfil'),
+        
 ]
