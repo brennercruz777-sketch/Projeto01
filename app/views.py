@@ -16,10 +16,6 @@ def lista_vagas(request):
         vagas = vagas.filter(modalidade=modalidade)
     return render(request, 'app/lista_vagas.html', {'vagas': vagas})
 
-def detalhe_vaga(request, pk):
-    vaga = get_object_or_404(Vaga, pk=pk)
-    return render(request, 'app/detalhe_vaga.html', {'vaga': vaga})
-
 
 # --- VIEWS PROTEGIDAS (REQUEREM LOGIN) ---
 
