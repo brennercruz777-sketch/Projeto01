@@ -3,7 +3,7 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h3 class="fw-bold m-0 text-white">Painel de Gestão</h3>
+        <h3 class="fw-bold m-0 text-white"><i class="bi bi-sliders text-info me-2"></i>Painel de Gestão</h3>
         <p class="text-muted small m-0">Gerencie todas as vagas publicadas na plataforma.</p>
     </div>
     <a href="{% url 'criar_vaga' %}" class="btn btn-primary-clean">
@@ -37,9 +37,9 @@
                     <td class="fw-medium text-success">€ {{ vaga.salario }}</td>
                     <td>
                         {% if vaga.ativa %}
-                            <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 rounded-pill">Ativa</span>
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill">Ativa</span>
                         {% else %}
-                            <span class="badge bg-secondary bg-opacity-25 text-secondary border border-secondary border-opacity-25 rounded-pill">Encerrada</span>
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 rounded-pill">Encerrada</span>
                         {% endif %}
                     </td>
                     <td class="text-end">

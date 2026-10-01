@@ -58,3 +58,7 @@ def eliminar_vaga(request, pk):
 @login_required
 def perfil(request):
     return render(request, 'app/perfil.html')
+
+def detalhe_vaga(request, pk):
+    vaga = get_object_or_404(Vaga, pk=pk)
+    return render(request, 'app/detalhe_vaga.html', {'vaga': vaga})

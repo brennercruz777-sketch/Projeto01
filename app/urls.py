@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('vagas/', views.lista_vagas, name='lista_vagas'),
+    path('vagas/<int:pk>/', views.detalhe_vaga, name='detalhe_vaga'), # Rota dinâmica
     path('gestao/', views.painel_gestao, name='painel_gestao'),
     path('gestao/criar/', views.criar_vaga, name='criar_vaga'),
     path('gestao/editar/<int:pk>/', views.editar_vaga, name='editar_vaga'),

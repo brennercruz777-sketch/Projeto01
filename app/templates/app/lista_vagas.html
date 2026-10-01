@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="mb-4">
-    <h3 class="fw-bold mb-1">Mural de Oportunidades</h3>
-    <p class="text-muted small m-0">Filtre por modalidade para encontrar a vaga ideal para o seu perfil.</p>
+    <h3 class="fw-bold mb-1 text-white"><i class="bi bi-grid-3x3-gap text-info me-2"></i>Mural de Oportunidades</h3>
+    <p class="text-muted small m-0">Filtre por modalidade para encontrar a vaga ideal para o seu perfil tech.</p>
 </div>
 
 <!-- Filtro -->
@@ -41,51 +41,9 @@
                 </div>
                 <div class="d-flex align-items-center gap-4 justify-content-between justify-content-md-end">
                     <span class="fw-bold text-success fs-5">€ {{ vaga.salario }}</span>
-                    <!-- Botão que aciona o Modal -->
-                    <button type="button" class="btn btn-sm btn-light-clean px-3 py-2 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalVaga{{ vaga.pk }}">
+                    <a href="{% url 'detalhe_vaga' vaga.pk %}" class="btn btn-sm btn-light-clean px-3 py-2 fw-semibold">
                         Ver Detalhes
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Detalhes da Vaga -->
-        <div class="modal fade" id="modalVaga{{ vaga.pk }}" tabindex="-1" aria-labelledby="modalVagaLabel{{ vaga.pk }}" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content card-clean border-0 shadow-lg" style="background-color: #151c2c;">
-                    <div class="modal-header border-bottom border-secondary border-opacity-25 p-4">
-                        <div class="d-flex flex-column gap-1">
-                            <span class="badge {% if vaga.modalidade == 'Remoto' %}badge-remoto{% elif vaga.modalidade == 'Híbrido' %}badge-hibrido{% else %}badge-presencial{% endif %} px-3 py-1.5 rounded-pill fw-semibold w-auto d-inline-block" style="width: fit-content;">
-                                {{ vaga.modalidade }}
-                            </span>
-                            <h4 class="modal-title fw-bold text-white mt-2" id="modalVagaLabel{{ vaga.pk }}">{{ vaga.titulo_vaga }}</h4>
-                            <p class="text-muted small m-0"><i class="bi bi-building me-1"></i>{{ vaga.empresa }}</p>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white align-self-start" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-
-                    <div class="modal-body p-4">
-                        <div class="d-flex justify-content-between align-items-center p-3 rounded-3 mb-4 bg-dark bg-opacity-50 border border-secondary border-opacity-25">
-                            <span class="text-muted fw-medium">Remuneração Oferecida</span>
-                            <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 fs-5 px-3 py-1.5">
-                                € {{ vaga.salario }}
-                            </span>
-                        </div>
-
-                        <div class="mb-2">
-                            <h6 class="fw-bold text-white mb-2"><i class="bi bi-file-earmark-text text-info me-2"></i>Requisitos e Descrição</h6>
-                            <div class="bg-dark bg-opacity-50 p-3.5 rounded-3 text-light lh-lg" style="white-space: pre-line; border: 1px solid #222d45; max-height: 250px; overflow-y: auto;">
-                                {{ vaga.requisitos }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer border-top border-secondary border-opacity-25 p-3 gap-2">
-                        <button type="button" class="btn btn-light-clean px-4 fw-semibold" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-success fw-bold px-4 py-2" onclick="alert('Candidatura enviada com sucesso!')">
-                            <i class="bi bi-check-circle me-1"></i> Candidatar-me a esta Vaga
-                        </button>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
